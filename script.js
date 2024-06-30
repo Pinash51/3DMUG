@@ -6,7 +6,7 @@ renderer.setPixelRatio(window.devicePixelRatio);
 $('#model_view').append(renderer.domElement);
 
 const textureLoader = new THREE.TextureLoader();
-let textureUrl = 'img.jpg';
+let textureUrl = 'img/img.jpg';
 let mugTexture;
 let outerMugMaterial;
 let innerMugMaterial;
@@ -75,8 +75,6 @@ $('#bottom_ring_color').on('change', (event) => {
     mugMetrialColor(color, bottomRingMaterial, '#bottom_ring_img_show');
 });
 
-
-
 function mugMetrialImage(file, MugMaterial, id_show_img) {
     if (file) {
         const textureUrl = URL.createObjectURL(file);
@@ -108,15 +106,21 @@ function mugMetrialColor(color, MugMaterial, id_show_img) {
 }
 
 createMug();
+
+mugTexture = textureLoader.load(textureUrl);
+if (outerMugMaterial) {
+    outerMugMaterial.map = mugTexture;
+    outerMugMaterial.color.setHex(0xffffff);
+    outerMugMaterial.needsUpdate = true;
+}
+renderer.render(scene, camera);
+
 function createMug() {
     scene.clear();
 
     const outerMugGeometry = new THREE.CylinderGeometry(5, 5, 10, 1000, 1, true, 1.6);
     const innerMugGeometry = new THREE.CylinderGeometry(4.7, 4.7, 10, 1000, 1, true);
     const bottomGeometry = new THREE.CircleGeometry(5, 64);
-    // if(mugTexture) {
-    //     outerMugMaterial = new THREE.MeshPhongMaterial({ map: mugTexture, shininess: 100, side: THREE.DoubleSide });
-    // }
 
     outerMugMaterial = new THREE.MeshPhongMaterial({ color: 0xaaaaaa, shininess: 100, side: THREE.DoubleSide });
     innerMugMaterial = new THREE.MeshPhongMaterial({ color: 0xaaaaaa, shininess: 100, side: THREE.DoubleSide });
