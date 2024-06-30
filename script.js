@@ -1,4 +1,5 @@
 const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xffffff);
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerWidth, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize($('#model_view').innerWidth(), $('#model_view').innerWidth());
