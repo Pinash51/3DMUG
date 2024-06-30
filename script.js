@@ -164,7 +164,7 @@ function createMug() {
     mug.rotation.x = 0.5;
 
     const light = new THREE.PointLight(0xffffff, 1, 100);
-    light.position.set(10, 10, 10);
+    light.position.set(10, 10, 40);
     scene.add(light);
 
     const ambientLight = new THREE.AmbientLight(0x404040);
