@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Three.js Interactive Cylinder Rotation with Border</title>
+    <title>3D MUG</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body { margin: 0; }
@@ -15,20 +15,71 @@
 </head>
 <body>
     <div class="row">
-        <div class="col-md-6">
-            <div id="model_view">
-
+        <div class="col-md-6 px-5">
+            <div id="model_view"></div>
+        </div>
+        <div class="col-md-6 px-5 pt-2">
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="">Outer Layer</label>
+                    <button type="button" class="btn btn-sm btn-warning" id="outer_img_btn" onclick="$('#outer_image').click()">Upload Image</button>
+                    <input type="file" name="image" id="outer_image" accept=".jpg, .png" style="display: none;">
+                    <img src="" alt="Image" id="outer_img_show" width="100%">
+                    <input class="form-control" type="color" name="outer_color" id="outer_color">
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="">Inner Layer</label>
+                    <button type="button" class="btn btn-sm btn-warning" id="inner_img_btn" onclick="$('#inner_image').click()">Upload Image</button>
+                    <input type="file" name="image" id="inner_image" accept=".jpg, .png" style="display: none;">
+                    <img src="" alt="Image" id="inner_img_show" width="100%">
+                    <input class="form-control" type="color" name="inner_color" id="inner_color">
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="">Bottom Layer</label>
+                    <button type="button" class="btn btn-sm btn-warning" id="bottom_img_btn" onclick="$('#bottom_image').click()">Upload Image</button>
+                    <input type="file" name="image" id="bottom_image" accept=".jpg, .png" style="display: none;">
+                    <img src="" alt="Image" id="bottom_img_show" width="100%">
+                    <input class="form-control" type="color" name="bottom_color" id="bottom_color">
+                </div>
+                
+                <div class="form-group col-md-12">
+                    <label for="">Handle Layer</label>
+                    <button type="button" class="btn btn-sm btn-warning" id="handle_img_btn" onclick="$('#handle_image').click()">Upload Image</button>
+                    <input type="file" name="image" id="handle_image" accept=".jpg, .png" style="display: none;">
+                    <img src="" alt="Image" id="handle_img_show" width="100%">
+                    <input class="form-control" type="color" name="handle_color" id="handle_color">
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="">Top Ring Layer</label>
+                    <button type="button" class="btn btn-sm btn-warning" id="top_ring_img_btn" onclick="$('#top_ring_image').click()">Upload Image</button>
+                    <input type="file" name="image" id="top_ring_image" accept=".jpg, .png" style="display: none;">
+                    <img src="" alt="Image" id="top_ring_img_show" width="100%">
+                    <input class="form-control" type="color" name="top_ring_color" id="top_ring_color">
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="">Bottom Ring Layer</label>
+                    <button type="button" class="btn btn-sm btn-warning" id="bottom_ring_img_btn" onclick="$('#bottom_ring_image').click()">Upload Image</button>
+                    <input type="file" name="image" id="bottom_ring_image" accept=".jpg, .png" style="display: none;">
+                    <img src="" alt="Image" id="bottom_ring_img_show" width="100%">
+                    <input class="form-control" type="color" name="bottom_ring_color" id="bottom_ring_color">
+                </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <input type="file" name="image" id="image" accept=".jpg, .png">
-        </div>
+    </div>
+    <div class="text-center p-3 bg-success" style="color: black;">
+        Copyright © 2024 <a href="https://pisoftbd.com" target="_blank" rel="noopener noreferrer" style="font-weight: bold; color:black;">PI-SOFT</a>. All rights reserved.
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="script.js"></script>
-
+    <script>
+        navigator.serviceWorker.getRegistrations().then(registrations => {
+            for (const registration of registrations) {
+                registration.unregister();
+            } 
+        });
+    </script>
 </body>
 </html>

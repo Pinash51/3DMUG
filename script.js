@@ -8,66 +8,142 @@ $('#model_view').append(renderer.domElement);
 const textureLoader = new THREE.TextureLoader();
 let textureUrl = 'img.jpg';
 let mugTexture;
+let outerMugMaterial;
+let innerMugMaterial;
+let bottomMugMaterial;
+let topRingMaterial;
+let bottomRingMaterial;
+let handleMaterial;
 
-$('#image').on('change', (event) => {
+$('#outer_image').on('change', (event) => {
     const file = event.target.files[0];
+    mugMetrialImage(file, outerMugMaterial, '#outer_img_show');
+});
+
+$('#outer_color').on('change', (event) => {
+    var color = $(event.target).val();
+    mugMetrialColor(color, outerMugMaterial, '#outer_img_show');
+});
+
+$('#inner_image').on('change', (event) => {
+    const file = event.target.files[0];
+    mugMetrialImage(file, innerMugMaterial, '#inner_img_show');
+});
+
+$('#inner_color').on('change', (event) => {
+    var color = $(event.target).val();
+    mugMetrialColor(color, innerMugMaterial, '#inner_img_show');
+});
+
+$('#bottom_image').on('change', (event) => {
+    const file = event.target.files[0];
+    mugMetrialImage(file, bottomMugMaterial, '#bottom_img_show');
+});
+
+$('#bottom_color').on('change', (event) => {
+    var color = $(event.target).val();
+    mugMetrialColor(color, bottomMugMaterial, '#bottom_img_show');
+});
+
+$('#handle_image').on('change', (event) => {
+    const file = event.target.files[0];
+    mugMetrialImage(file, handleMaterial, '#handle_img_show');
+});
+
+$('#handle_color').on('change', (event) => {
+    var color = $(event.target).val();
+    mugMetrialColor(color, handleMaterial, '#handle_img_show');
+});
+
+$('#top_ring_image').on('change', (event) => {
+    const file = event.target.files[0];
+    mugMetrialImage(file, topRingMaterial, '#top_ring_img_show');
+});
+
+$('#top_ring_color').on('change', (event) => {
+    var color = $(event.target).val();
+    mugMetrialColor(color, topRingMaterial, '#top_ring_img_show');
+});
+
+$('#bottom_ring_image').on('change', (event) => {
+    const file = event.target.files[0];
+    mugMetrialImage(file, bottomRingMaterial, '#bottom_ring_img_show');
+});
+
+$('#bottom_ring_color').on('change', (event) => {
+    var color = $(event.target).val();
+    mugMetrialColor(color, bottomRingMaterial, '#bottom_ring_img_show');
+});
+
+
+
+function mugMetrialImage(file, MugMaterial, id_show_img) {
     if (file) {
         const textureUrl = URL.createObjectURL(file);
         const img = new Image();
         img.onload = () => {
             mugTexture = textureLoader.load(textureUrl);
             URL.revokeObjectURL(textureUrl);
-            createMug();
+            if (MugMaterial) {
+                MugMaterial.map = mugTexture;
+                MugMaterial.color.setHex(0xffffff);
+                MugMaterial.needsUpdate = true;
+            }
+            renderer.render(scene, camera);
         };
         img.src = textureUrl;
+        $(id_show_img).attr('src',img.src);
     }
-});
+}
 
-textureLoader.load(
-    textureUrl,
-    (texture) => {
-        mugTexture = texture;
-        createMug();
-    },
-    undefined,
-    (error) => {
-        console.log('An error occurred while loading the texture.', error);
+function mugMetrialColor(color, MugMaterial, id_show_img) {
+    var threeColor = parseInt(color.replace('#', '0x'), 16);
+    if (MugMaterial) {
+        MugMaterial.map = null;
+        MugMaterial.color.setHex(threeColor);
+        MugMaterial.needsUpdate = true;
     }
-);
+    renderer.render(scene, camera);
+    $(id_show_img).attr('src',null);
+}
 
+createMug();
 function createMug() {
-    scene.clear(); // Clear existing scene content
+    scene.clear();
 
-    const outerMugGeometry = new THREE.CylinderGeometry(5, 5, 10, 100, 1, true, 1.6);
-    const innerMugGeometry = new THREE.CylinderGeometry(4.7, 4.7, 10, 100, 1, true);
+    const outerMugGeometry = new THREE.CylinderGeometry(5, 5, 10, 1000, 1, true, 1.6);
+    const innerMugGeometry = new THREE.CylinderGeometry(4.7, 4.7, 10, 1000, 1, true);
     const bottomGeometry = new THREE.CircleGeometry(5, 64);
+    // if(mugTexture) {
+    //     outerMugMaterial = new THREE.MeshPhongMaterial({ map: mugTexture, shininess: 100, side: THREE.DoubleSide });
+    // }
 
-    const outerMugMaterial = new THREE.MeshPhongMaterial({ map: mugTexture, shininess: 100, side: THREE.DoubleSide });
-    const innerMugMaterial = new THREE.MeshPhongMaterial({ color: 0xaaaaaa, shininess: 100, side: THREE.DoubleSide });
-
+    outerMugMaterial = new THREE.MeshPhongMaterial({ color: 0xaaaaaa, shininess: 100, side: THREE.DoubleSide });
+    innerMugMaterial = new THREE.MeshPhongMaterial({ color: 0xaaaaaa, shininess: 100, side: THREE.DoubleSide });
+    bottomMugMaterial = new THREE.MeshPhongMaterial({ color: 0xaaaaaa, shininess: 100, side: THREE.DoubleSide });
+    
     const outerMug = new THREE.Mesh(outerMugGeometry, outerMugMaterial);
     const innerMug = new THREE.Mesh(innerMugGeometry, innerMugMaterial);
-
+    const bottom = new THREE.Mesh(bottomGeometry, bottomMugMaterial);
+    bottom.rotation.x = -Math.PI / 2;
+    bottom.position.y = -5;
+    
     const topRingGeometry = new THREE.TorusGeometry(4.85, 0.15, 100, 100);
-    const topRingMaterial = new THREE.MeshStandardMaterial({ color: 0xaaaaaa });
+    topRingMaterial = new THREE.MeshPhongMaterial({ color: 0xaaaaaa });
     const topRing = new THREE.Mesh(topRingGeometry, topRingMaterial);
     topRing.position.set(0, 5, 0);
     topRing.rotation.set(Math.PI / 2, 0, 0); 
 
     const bottomRingGeometry = new THREE.TorusGeometry(4.85, 0.15, 100, 100);
-    const bottomRingMaterial = new THREE.MeshStandardMaterial({ color: 0xaaaaaa });
+    bottomRingMaterial = new THREE.MeshPhongMaterial({ color: 0xaaaaaa, shininess: 100, side: THREE.DoubleSide });
     const bottomRing = new THREE.Mesh(bottomRingGeometry, bottomRingMaterial);
     bottomRing.position.set(0, -5, 0);
     bottomRing.rotation.set(Math.PI / 2, 0, 0); 
 
-    const bottom = new THREE.Mesh(bottomGeometry, innerMugMaterial);
-    bottom.rotation.x = -Math.PI / 2;
-    bottom.position.y = -5;
-    
     const handleGeometry = new THREE.TorusGeometry(3.5, 0.5, 100, 100, Math.PI * 1);
-    const handleMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff });
+    handleMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff, shininess: 100, side: THREE.DoubleSide });
     const handle = new THREE.Mesh(handleGeometry, handleMaterial);
-    handle.position.set(5, 0, 0);
+    handle.position.set(4.9, 0, 0);
     handle.rotation.z = Math.PI * 1.5;
 
     const mug = new THREE.Group();
