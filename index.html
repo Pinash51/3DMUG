@@ -90,10 +90,12 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="script.js"></script>
     <script>
-        navigator.serviceWorker.getRegistrations().then(registrations => {
-            for (const registration of registrations) {
-                registration.unregister();
-            } 
+        $(document).ready(function() {
+            $.ajax({
+                url: 'http://127.0.0.1:8000/api/visitor',
+                type: 'GET',
+                success: function(response) {}
+            });
         });
     </script>
 </body>
