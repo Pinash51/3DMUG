@@ -1,47 +1,80 @@
-🧱 3D Mug Customizer
-3D Mug Customizer is an interactive, open-source web application that lets users design a mug in real-time using a fully manipulable 3D model. Built with Three.js, jQuery, and Bootstrap, this project allows for live preview of textures and colors applied to different parts of the mug, including:
+# ☕ 3D Mug Customizer
 
-Outer and inner surfaces
+An interactive 3D mug customization tool built with **Three.js**, **jQuery**, and **Bootstrap**. This project allows users to apply textures and colors to different parts of a 3D mug model in real time.
 
-Bottom base
+## 🔍 Live Demo
 
-Handle
+[View Demo](#) *(Link your hosted version here)*
 
-Top and bottom rings
+## 🖼 Features
 
-🌟 Features
-Upload custom images for each layer of the mug
+* 🎨 Upload custom images for each part of the mug:
 
-Choose solid colors with a built-in color picker
+  * Outer surface
+  * Inner surface
+  * Bottom
+  * Handle
+  * Top ring
+  * Bottom ring
+* 🧱 Color pickers for each section
+* 🔁 Real-time updates with instant feedback
+* 🌀 Drag to rotate the mug
+* 🔍 Scroll to zoom
+* 📱 Fully responsive design
 
-Real-time rendering with dynamic lighting
+## 📦 Tech Stack
 
-Mouse/touch drag to rotate the mug
+* **Three.js** – for 3D modeling & rendering
+* **jQuery** – for DOM manipulation and events
+* **Bootstrap 4** – for responsive layout
+* **HTML5 / CSS3**
 
-Scroll to zoom in and out
+## 📁 Folder Structure
 
-Responsive layout for desktop and mobile
+```
+project/
+├── img/                  # Static images, textures, and icons
+├── script.js             # Main logic for 3D model and interactions
+├── index.html            # Entry point with UI and layout
+├── style.css             # Custom styles (if any)
+└── README.md             # You're here :)
+```
 
-💡 Use Cases
-Personalized product previews for e-commerce
+## 🚀 Getting Started
 
-Prototyping mug designs before production
+### Prerequisites
 
-Teaching 3D modeling and texture mapping concepts
+* A modern browser (Chrome, Firefox, Edge)
+* Live Server extension or any local HTTP server
 
-🚀 Tech Stack
-Three.js for 3D rendering
+### How to Run
 
-jQuery for event handling
+```bash
+# Clone the repo
+https://github.com/Pinash51/3DMUG.git
 
-Bootstrap 4 for responsive UI
+# Open index.html in your browser
+```
 
-HTML5 & CSS3
+## 🛠 Contributing
 
-Backend-ready (API hooks included for visitor tracking and potential storage)
+This is an open-source project. Feel free to:
 
-🤝 Contribute
-This is an open-source project—your contributions are welcome! Whether it's code improvements, bug fixes, performance optimizations, or UI enhancements, feel free to fork the repo and submit a pull request.
+* 🌟 Star the repository
+* 🐛 Report bugs
+* ✨ Add new features
+* 📦 Improve performance or UI
 
-📎 Repository
-👉 GitHub: Pinash51/3DMUG
+Pull requests are welcome!
+
+## 📄 License
+
+MIT License. See [LICENSE](LICENSE) for more information.
+
+## 👨‍💻 Author
+
+Built with ❤️ by [Pinash51](https://github.com/Pinash51) — maintained by the open-source community.
+
+## 🌐 External Links
+
+* [PI-SOFT BD](https://pisoftbd.com)
