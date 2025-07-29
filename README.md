@@ -1,4 +1,4 @@
-# ☕ 3D Mug Customizer
+# ☕ 3D Mug Customizer (MugForge 3D)
 
 An interactive 3D mug customization tool built with **Three.js**, **jQuery**, and **Bootstrap**. This project allows users to apply textures and colors to different parts of a 3D mug model in real time.
 
