@@ -75,6 +75,3 @@ MIT License. See [LICENSE](LICENSE) for more information.
 
 Built with ❤️ by [Pinash51](https://github.com/Pinash51) — maintained by the open-source community.
 
-## 🌐 External Links
-
-* [PI-SOFT BD](https://pisoftbd.com)
