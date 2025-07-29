@@ -4,7 +4,7 @@ An interactive 3D mug customization tool built with **Three.js**, **jQuery**, an
 
 ## 🔍 Live Demo
 
-[View Demo](#) *(Link your hosted version here)*
+[View Demo](https://3dmug.netlify.app/) *(Link your hosted version here)*
 
 ## 🖼 Features
 
